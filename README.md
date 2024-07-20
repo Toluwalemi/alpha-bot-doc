@@ -1,9 +1,18 @@
-# HNG-DevOps-1(Alpha Bot) Documentation
+## Deployment Guide
 
-## Overview
+### Overview
 
-In today's fast-paced development environment, efficient code review and deployment processes are paramount, optimizing processes workflow via automation is key. 
-This custom **Alpha bot**, a Node.js application, automates the process of building, deploying and merging pull requests (PRs). It leverages **Docker** for containerization in isolated environments, exposing deployed URL via **Ngrok**, clean up of containers and resources and provides comprehensive feedback on the deployment via comments. It is repository agnostic.
+In modern software development, the rapid deployment of applications and maintaining high-quality releases are essential. A robust CI/CD (Continuous Integration/Continuous Deployment) system is critical to achieving these goals.
+
+### Project Description
+
+This project involves a custom bot, built as a Node.js application, which automates the process of building and deploying pull requests (PRs). It leverages Docker for containerization, ensuring each PR is deployed in an isolated environment. The bot uses Ngrok to expose deployed URLs, facilitates the cleanup of containers and resources, and provides comprehensive feedback on the deployment process via comments.
+
+### Benefits for DevOps Engineers
+
+- **Effortless Testing of New Features**: Automatically deploy each new pull request into its Docker container, providing a pristine environment that mirrors production.
+- **Enhanced Code Review Process**: Enable reviewers to interact with live, deployed versions of the code changes, facilitating thorough testing and validation.
+- **Optimized Resource Management System**: Automate the cleanup of Docker containers upon pull request closure, ensuring optimal use of infrastructure without manual intervention.
 
 ## Architecture
 ![Bot Architechture](images/alpha-bot.png)
@@ -41,14 +50,12 @@ A few preresquities before running.
 - The intended respository to be automated. Docker File  not present, Create [here](https://medium.com/@swalperen3008/what-is-dockerize-and-dockerize-your-project-a-step-by-step-guide-899c48a34df6#:~:text=When%20you%20%E2%80%9CDockerize%E2%80%9D%20an%20application,application%20as%20a%20Docker%20container.)
 
 #### Step 1. Intergration with Intended Repository
-- To install the Alpha-bot application, [Click here](https://github.com/apps/alphateam-hng-devops)
+- To install the Github App [Click here](https://github.com/apps/alphateam-hng-devops)
 ![Installation](images/realstepa)
 - Next select the repository permissions it should have access to, it then reflects on the applications page
 ![permissions](images/realstepb)
 ![view](images/realstepc)
 
-
-### Section B: Alpha-Bot Testing
 
 ### Section C: Alpha-Bot Local Development/SetUp
 A local run through of developing the Alpha-Bot from scratch.
@@ -189,7 +196,7 @@ NGROK_AUTH_TOKEN=your_ngrok_auth_token
 - `PORT`: The port number on which the application will run
 - `WEBHOOK_SECRET`: The secret token configured in GitHub webhook settings
 - `APP_ID`: GitHub App ID.
-- `PRIVATE_KEY_PATH`: Path to the private key file generated for your GitHub App.
+- `PRIVATE_KEY`: "-----BEGIN RSA PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END RSA PRIVATE KEY-----"
 - `INSTALLATION_ID`: Installation ID of your GitHub App.
 - `NGROK_AUTH_TOKEN`: Your ngrok authentication token.
 
