@@ -140,12 +140,7 @@ This automatically copies your Authtoken. On your command line, run the followin
 $ ngrok authtoken <your_auth_token>
 ```
 
-With these prerequisites in place, you're well-prepared to embark on setting up your automated deployment system.
-
-## Overview
-
-In today's fast-paced development environment, efficient code review and deployment processes are paramount, optimizing processes workflow via automation is key.
-This custom **Alpha bot**, a Node.js application, automates the process of building, deploying and merging pull requests (PRs). It leverages **Docker** for containerization in isolated environments, exposing deployed URL via **Ngrok**, clean up of containers and resources and provides comprehensive feedback on the deployment via comments. It is repository agnostic.
+With these prerequisites in place, you're well-prepared to set up your automated deployment system.
 
 <a id="architecture"></a>
 
