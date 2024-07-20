@@ -34,6 +34,44 @@ Such a setup offers an:
   - [Section A](#section-a)
   - [Section B](#section-b)
 
+
+<a id="architecture"></a>
+
+## Architecture
+
+![Bot Architechture](images/alpha-bot.png)
+The application listens for pull request events (`opened`, `reopened`, `synchronize`, `closed`) and performs the following actions:
+
+- **Opened/Reopened/Synchronize**: Triggers a deployment of the pull request code using Docker and adds a comment to the pull request.
+- **Closed**: Removes the deployed Docker container and its associated resources, and adds a comment to the pull request
+
+<a id="folder-structure"></a>
+
+## Folder Structure
+
+```
+|--- services
+|    |--- deploymentService.js
+|    |--- repositoryService.js
+|--- .gitignore
+|--- index.js
+|--- package.json
+|--- README.md
+```
+
+- services/deploymentService.js: Handles Docker deployment operations
+- services/repositoryService.js: Manages interactions with the GitHub API
+- index.js: The main application file that sets up the server and handles incoming webhook events.
+
+## Functionality / Features
+
+- Automated Pull Requests Handling:
+- Resource Management:
+- Comprehensive Feedback Comments:
+- Publicly Accessible Endpoints:
+- Custom Domain name:
+- Error Handling??
+
 ## Prerequisites to Get Started
 
 Before diving into the setup, let's ensure you have all the necessary tools and knowledge to make this journey smooth and successful. However, we are making a couple assumptions, that you:
@@ -141,43 +179,6 @@ $ ngrok authtoken <your_auth_token>
 ```
 
 With these prerequisites in place, you're well-prepared to set up your automated deployment system.
-
-<a id="architecture"></a>
-
-## Architecture
-
-![Bot Architechture](images/alpha-bot.png)
-The application listens for pull request events (`opened`, `reopened`, `synchronize`, `closed`) and performs the following actions:
-
-- **Opened/Reopened/Synchronize**: Triggers a deployment of the pull request code using Docker and adds a comment to the pull request.
-- **Closed**: Removes the deployed Docker container and its associated resources, and adds a comment to the pull request
-
-<a id="folder-structure"></a>
-
-## Folder Structure
-
-```
-|--- services
-|    |--- deploymentService.js
-|    |--- repositoryService.js
-|--- .gitignore
-|--- index.js
-|--- package.json
-|--- README.md
-```
-
-- services/deploymentService.js: Handles Docker deployment operations
-- services/repositoryService.js: Manages interactions with the GitHub API
-- index.js: The main application file that sets up the server and handles incoming webhook events.
-
-## Functionality / Features
-
-- Automated Pull Requests Handling:
-- Resource Management:
-- Comprehensive Feedback Comments:
-- Publicly Accessible Endpoints:
-- Custom Domain name:
-- Error Handling??
 
 <a id="getting-started"></a>
 
