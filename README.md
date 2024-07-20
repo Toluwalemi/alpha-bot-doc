@@ -215,6 +215,21 @@ npm run dev
 ```bash
 ngrok http 3003
 ```
+#### Section C: Testing
+
+* Set Up Ngrok: Start Ngrok as described in the Ngrok Installation section. Ensure your local server is accessible through the Ngrok public URL.
+
+* Configure GitHub Webhooks and create a Pull Request:
+
+   * With a Webhook added to our Github App,Create a Pull Request in the repository where the GitHub App is installed. The bot should automatically start the deployment process.
+
+* Verify Deployment:
+
+Check the PR thread for a comment from the bot with the deployment status and URL.
+Access the deployment using the provided URL to verify that the container is running.
+
+* Close the PR: Closing the PR should trigger the cleanup process, removing the Docker container and associated resources.
+
 ## Collaboration Guide
 
 We welcome contributions from the community to improve **Alpha-Bot**! Here's how you can get involved:
