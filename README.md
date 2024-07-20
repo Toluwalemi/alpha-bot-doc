@@ -215,18 +215,17 @@ npm run dev
 ```bash
 ngrok http 3003
 ```
-#### Section C: Testing
+#### Section D: GitHub App Bot testing
 
-* Set Up Ngrok: Start Ngrok as described in the Ngrok Installation section. Ensure your local server is accessible through the Ngrok public URL.
-
-* Configure GitHub Webhooks and create a Pull Request:
-
-   * With a Webhook added to our Github App,Create a Pull Request in the repository where the GitHub App is installed. The bot should automatically start the deployment process.
+* Navigate to the repository you want to make contributions and fork it.
+* Clone the repository to your local machine.
+* Create a New branch,make changes,commit the changes and puush the   changes
+* Create a Pull Request in the repository where the GitHub App is installed. The bot should automatically start the deployment process.
 
 * Verify Deployment:
 
-Check the PR thread for a comment from the bot with the deployment status and URL.
-Access the deployment using the provided URL to verify that the container is running.
+   * Check the PR thread for a comment from the bot with the deployment status and URL.
+   * Access the deployment using the provided URL to verify that the container is running.
 
 * Close the PR: Closing the PR should trigger the cleanup process, removing the Docker container and associated resources.
 
