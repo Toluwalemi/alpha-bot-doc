@@ -1,22 +1,38 @@
 # HNG-DevOps-1(Alpha Bot) Documentation
 
-When it comes to software development, rapid iteration of the moving of an application and high-quality releases are becoming the bare minimum. That is why having a robust CI/CD (Continuous Integration/Continuous Deployment) system is a must and inexcusable.
+## OVERVIEW
 
-One such CI/CD system you could have in place is having every pull request automatically get its own testing environment, isolated from the main codebase. This would mean new features and bug fixes are evaluated in a production-like setting before merging, which can be game-changing.
+When it comes to software development a robust CI/CD (Continuous Integration/Continuous Deployment) system is a must and inexcusable.
 
-For DevOps engineers, such a setup offers an:
+One such CI/CD system you could have in place is this custom **Alpha bot**, a `Node.js` application. The bot automates building, deploying and merging pull requests (PRs)—every pull request automatically get its own testing environment, isolated from the main codebase.
 
-- Effortless Testing of New Features: Automatically deploy each new pull request into its Docker container, providing a pristine environment that mirrors production.
-- Enhanced Code Review Process: Enable reviewers to interact with live, deployed versions of the code changes, facilitating thorough testing and validation.
-- Optimized Resource Management System: Automate the cleanup of Docker containers upon pull request closure, ensuring optimal use of infrastructure without manual intervention.
+It uses **Docker** for containerization in isolated environments, exposing deployed URL via **ngrok**, clean up of containers and resources and provides comprehensive feedback on the deployment via comments. It is repository agnostic.
 
-This guide is your comprehensive roadmap to setting up an automated deployment system using Docker, GitHub App, GitHub bot, and ngrok. It covers:
+This would mean new features and bug fixes are evaluated in a production-like setting before merging, which can be game-changing.
 
-1. Detailed instructions on installing and configuring Docker and ngrok.
-2. How to create and configure GitHub bot to automate deployment tasks to provide real-time deployment updates and manage resource cleanup efficiently.
-3. How to expose your local development environment to the internet using webhook testing and smooth component communication.
-4. Comprehensive instructions on merging Docker, GitHub App, GitHub bot, and ngrok into a cohesive, automated deployment workflow.
-5. Common problems, troubleshooting tips, and best practices for deploying your application.
+Such a setup offers an:
+
+- **Effortless Testing of New Features**: Automatically deploy each new pull request into its Docker container, providing a pristine environment that mirrors production.
+- **Enhanced Code Review Process**: Enable reviewers to interact with live, deployed versions of the code changes, facilitating thorough testing and validation.
+- **Optimized Resource Management System**: Automate the cleanup of Docker containers upon pull request closure, ensuring optimal use of infrastructure without manual intervention.
+
+# Project Team Contributors
+
+| Name     | LinkedIn |
+| -------- | -------- |
+| John Doe | link.com |
+| Jane Doe | link.com |
+
+<a id="table-contents"></a>
+
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Architecture](#architecture)
+- [Folder Structure](#folder-structure)
+- [Getting Started](#getting-started)
+  - [Section A](#section-a)
+  - [Section B](#section-b)
 
 ## Prerequisites to Get Started
 
@@ -131,6 +147,8 @@ With these prerequisites in place, you're well-prepared to embark on setting up 
 In today's fast-paced development environment, efficient code review and deployment processes are paramount, optimizing processes workflow via automation is key.
 This custom **Alpha bot**, a Node.js application, automates the process of building, deploying and merging pull requests (PRs). It leverages **Docker** for containerization in isolated environments, exposing deployed URL via **Ngrok**, clean up of containers and resources and provides comprehensive feedback on the deployment via comments. It is repository agnostic.
 
+<a id="architecture"></a>
+
 ## Architecture
 
 ![Bot Architechture](images/alpha-bot.png)
@@ -138,6 +156,8 @@ The application listens for pull request events (`opened`, `reopened`, `synchron
 
 - **Opened/Reopened/Synchronize**: Triggers a deployment of the pull request code using Docker and adds a comment to the pull request.
 - **Closed**: Removes the deployed Docker container and its associated resources, and adds a comment to the pull request
+
+<a id="folder-structure"></a>
 
 ## Folder Structure
 
@@ -164,7 +184,11 @@ The application listens for pull request events (`opened`, `reopened`, `synchron
 - Custom Domain name:
 - Error Handling??
 
+<a id="getting-started"></a>
+
 ## Getting Started
+
+<a id="section-a"></a>
 
 ### Section A: Alpha-Bot Usage
 
@@ -181,6 +205,8 @@ A few preresquities before running.
 - Next select the repository permissions it should have access to, it then reflects on the applications page
   ![permissions](images/realstepb)
   ![view](images/realstepc)
+
+[Back to Table of Contents](#toc)
 
 ### Section B: Alpha-Bot Testing
 
