@@ -24,8 +24,9 @@ Such a setup offers an:
 - [Folder Structure](#folder-structure)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
-  - [Section A](#section-a)
+  - [Section A: Setting Up the Alpha-Bot](#section-a)
   - [Section B](#section-b)
+- [Troubleshooting and Best Practices](#troubleshooting)
 - [Project Contributors](#contributors)
 
 <a id="architecture"></a>
@@ -407,6 +408,8 @@ We welcome contributions from the community to improve **Alpha-Bot**! Here's how
   > 4.  Test thoroughly
 
 ## Maintenance
+
+<a id="troubleshooting"></a>
 
 ## Troubleshooting and Best Practices
 
