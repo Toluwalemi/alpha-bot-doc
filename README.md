@@ -16,31 +16,24 @@ Such a setup offers an:
 - **Enhanced Code Review Process**: Enable reviewers to interact with live, deployed versions of the code changes, facilitating thorough testing and validation.
 - **Optimized Resource Management System**: Automate the cleanup of Docker containers upon pull request closure, ensuring optimal use of infrastructure without manual intervention.
 
-# Project Team Contributors
-
-| Name     | LinkedIn |
-| -------- | -------- |
-| John Doe | link.com |
-| Jane Doe | link.com |
-
-<a id="table-contents"></a>
+<a id="toc"></a>
 
 ## Table of Contents
 
-- [Prerequisites](#prerequisites)
 - [Architecture](#architecture)
 - [Folder Structure](#folder-structure)
+- [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
   - [Section A](#section-a)
   - [Section B](#section-b)
-
+- [Project Contributors](#contributors)
 
 <a id="architecture"></a>
 
 ## Architecture
 
 ![Bot Architechture](images/alpha-bot.png)
-The application listens for pull request events (`opened`, `reopened`, `synchronize`, `closed`) and performs the following actions:
+The bot listens for pull request events (`opened`, `reopened`, `synchronize`, `closed`) and performs the following actions:
 
 - **Opened/Reopened/Synchronize**: Triggers a deployment of the pull request code using Docker and adds a comment to the pull request.
 - **Closed**: Removes the deployed Docker container and its associated resources, and adds a comment to the pull request
@@ -63,27 +56,20 @@ The application listens for pull request events (`opened`, `reopened`, `synchron
 - services/repositoryService.js: Manages interactions with the GitHub API
 - index.js: The main application file that sets up the server and handles incoming webhook events.
 
-## Functionality / Features
-
-- Automated Pull Requests Handling:
-- Resource Management:
-- Comprehensive Feedback Comments:
-- Publicly Accessible Endpoints:
-- Custom Domain name:
-- Error Handling??
+<a id="prerequisites"></a>
 
 ## Prerequisites to Get Started
 
 Before diving into the setup, let's ensure you have all the necessary tools and knowledge to make this journey smooth and successful. However, we are making a couple assumptions, that you:
 
 1. Understand Docker and have used it for deployment purposes
-2. Understand version control systems (VCS)
+2. Understand Git and have a GitHub account set up
 3. Can find your way around Javascript
 4. Have your linux cloud server up and running
 
-For this installation to go properly, you'll need to:
+For a seamless installation process, you'll need to:
 
-### Install Docker
+### 1. Install Docker
 
 For Ubuntu:
 
@@ -139,17 +125,6 @@ REPOSITORY    TAG       IMAGE ID       SIZE
 hello-world   latest    d2c94e258dcb   13.26kB
 ```
 
-### GitHub Account
-
-Make sure you have access to the repository where the deployment system will be set up. This is essential for integrating the GitHub App and bot with your workflow.
-
-To effectively set up and manage this automated deployment system, you should have a basic understanding of the following:
-
-- JSON: For handling data structures and API responses.
-- JavaScript: Useful for developing the GitHub bot and handling webhook events.
-- Webhooks: Mechanisms for receiving real-time updates from GitHub.
-- APIs: Interfacing with GitHub and other services programmatically.
-
 ### ngrok Installation
 
 ngrok is a powerful tool that allows you to expose your local development environment to the internet. This is particularly useful for testing webhooks (which we will be doing at the end of this deployment).
@@ -186,80 +161,65 @@ With these prerequisites in place, you're well-prepared to set up your automated
 
 <a id="section-a"></a>
 
-### Section A: Alpha-Bot Usage
+## [Back to Table of Contents](#toc)
 
-Alpha-Bot is Repository agnostic, it works on any and every respository it is set up for as far as it revolves around containerization of the code.
-A few preresquities before running.
-
-- A Github account
-- The intended respository to be automated. Docker File not present, Create [here](https://medium.com/@swalperen3008/what-is-dockerize-and-dockerize-your-project-a-step-by-step-guide-899c48a34df6#:~:text=When%20you%20%E2%80%9CDockerize%E2%80%9D%20an%20application,application%20as%20a%20Docker%20container.)
-
-#### Step 1. Intergration with Intended Repository
-
-- To install the Alpha-bot application, [Click here](https://github.com/apps/alphateam-hng-devops)
-  ![Installation](images/realstepa)
-- Next select the repository permissions it should have access to, it then reflects on the applications page
-  ![permissions](images/realstepb)
-  ![view](images/realstepc)
-
-[Back to Table of Contents](#toc)
-
-### Section B: Alpha-Bot Testing
-
-### Section C: Alpha-Bot Local Development/SetUp
-
-A local run through of developing the Alpha-Bot from scratch.
-Prerequisites for the set up:
-
-- A Github Account
-- A Liunx Server preferably Ubuntu
-- Basic Javascript Knowledge
+### Section A: Setting Up the Alpha-Bot
 
 #### Step 1. Create a Github App
 
-- At the top right corner of the page, select the github profile photo, scroll down to **settings** and click
-  ![settings](images/stepa)
-- Scroll the next drop down and select **developer settings** then **Github Apps** and finally **New Github App**
-- The Requirements form pop, fill as follow
-  ![Requirements](stepd.png)
-- For the webhook url,insert the url pointing to your ngrok URL or any public URL where the bot is running.
-- Webhook secret,
+- At the top right corner of the page, select the github profile photo, scroll down an click on **Settings**
+  ![settings](images/stepa.PNG)
 
-#### Step 2. Set the permissions:
+- Then you scroll the next drop down and click on **Developer Settings**
+  ![dev settings](images/dev%20settings.png)
 
-- Repository permissions: Read & write for Issues.
-- Subscribe to events: Choose Pull requests.
+- Click on **Github Apps**
+  ![github apps](images/github%20app.png)
 
-#### Step 3. Installation of the GitHub App:
+- A requirement form then pops up. Just fill as required. The homepage URL can be the README file from the bot's repo.
+  ![Requirements](images/stepd.png)
 
-- Install the app on your desired repositories.
-- Generate and Download Private Key:
+- For the webhook url field, insert your ngrok URL or the public IP of the server on which the bot is running. Make sure to add the web protocol prefix https/https so you don't run into errors.
+  ![webhook](images/github%20webhook.png)
 
-Download the private key and save it in your project directory. Update the .env file with the path to this private key.
+- Scroll down to manage the repo's permissions
+  ![repo permissions](images/repo%20perm.png)
 
-### Step 2. Clone Repository
+- Ensure the following are granted **Read and Write** access
+  ![read and write access](images/read%20and%20write.png)
 
-On your local machine, clone the project
+- Scroll down a little further to subscribe to events: Check all the boxes labelled pull requests. Also check the **Issues** box.
+  ![events](images/events%20subscription.png)
 
-```bash
-git clone https://github.com/your-username/github-bot.git
+- After clicking on `Create GitHub App`, you see this page if everything has been configured correctly
+  ![new app](images/alpha%20bot.png)
+
+- Generate and Download Private Key
+  ![generate pvt key](images/private%20key.png)
+
+- The key is automatically downloaded and ready for use
+  ![downloaded key](images/downloaded%20pvt%20keys.png)
+- Now, update the .env file with the path to this private key like so:
+
+```env
+PORT=3003
+WEBHOOK_SECRET=your_github_webhook_secret
+APP_ID=your_github_app_id
+PRIVATE_KEY_PATH=path_to_your_private_key.pem
+INSTALLATION_ID=your_installation_id
+NGROK_AUTH_TOKEN=your_ngrok_auth_token
 ```
 
-```
-cd github-bot
-```
+### Step 2. Integrate the GitHub App With the Intended Repo
 
-### Step 3. Install Dependencies
+1. To install the GitHub app you just created, click on **Public page** on the side panel
+   ![public page](images/public%20page.png)
 
-Its a nodejs app, npm package manager
+2. On your app's public page, click the green **Install** button
+   ![install the bot](images/installing%20the%20app.png)
 
-```shell
-npm install
-```
-
-```
-node- --version
-```
+3. Next, select the repo you want the bot to work on
+   ![repo permissions](images/install%20on%20repo.png)
 
 ### Step 4: Code Blocks Explanation
 
@@ -448,6 +408,92 @@ We welcome contributions from the community to improve **Alpha-Bot**! Here's how
 
 ## Maintenance
 
-## Troubleshooting
+## Troubleshooting and Best Practices
+
+### Common Issues
+
+Even with a well-designed automated deployment system, you might encounter some common issues.
+
+Here’s a list of potential problems and their troubleshooting steps to help you quickly resolve them and keep your deployment pipeline running smoothly.
+
+#### 1. Docker Container Fails to Start
+
+**Symptom**: When you run your Docker container, it fails to start, or it exits immediately.
+
+**Possible Causes**:
+
+- Incorrect Dockerfile configuration.
+- Missing dependencies or incorrect environment variables.
+- Port conflicts or insufficient permissions.
+
+**Solution Steps**:
+
+1. **Check Docker Logs**: Start by checking the logs for any error messages
+
+```
+docker logs <container_id>
+```
+
+2. **Review Dockerfile**: Ensure that the Dockerfile is correctly configured and includes all necessary dependencies.
+
+3. **Validate Environment Variables**: Verify that all required environment variables are correctly set.
+
+4. **Resolve Port Conflicts**: Make sure the ports your container is trying to bind to are not already in use.
+
+```
+sudo lsof -i -P -n | grep LISTEN
+```
+
+5. **Check Permissions**: Ensure that Docker has the necessary permissions to run containers. On some systems, you may need to run Docker commands with sudo.
+
+#### 2. Webhook Not Triggering Deployments
+
+**Symptom**: The GitHub webhook events do not trigger the deployment process.
+
+**Possible Causes**:
+
+- Incorrect webhook URL.
+- Network issues preventing GitHub from reaching your server.
+- ngrok tunnel not active.
+
+**Solution Steps**:
+
+1. **Verify Webhook URL**: Ensure the webhook URL is correct and points to your ngrok tunnel.
+2. **Check ngrok Status**: Make sure the ngrok tunnel is active and running.
+
+```
+ngrok http 80
+```
+
+3. **Test Connectivity**: Use curl or Postman to send a test POST request to the webhook URL to ensure it is reachable.
+
+```
+curl -X POST -H "Content-Type: application/json" -d '{"test":"data"}' https://<ngrok_subdomain>.ngrok.io/webhook
+```
+
+#### 3. GitHub Bot Fails to Comment on PRs
+
+**Symptom**: The GitHub bot does not post status updates or comments on pull requests.
+
+**Possible Causes**:
+
+- Incorrect GitHub API token.
+- Insufficient permissions for the GitHub App.
+- Errors in the bot's code.
+
+**Solution Steps**:
+
+1. **Check API Token**: Ensure the GitHub API token used by the bot is correct and has the necessary permissions.
+2. **Verify App Permissions**: Confirm that the GitHub App has the required permissions to read/write pull requests and issues.
+3. **Debug Bot Code**: Review and debug the bot
+
+<a id="contributors"></a>
+
+# Project Team Contributors
+
+| Name     | LinkedIn |
+| -------- | -------- |
+| John Doe | link.com |
+| Jane Doe | link.com |
 
 ## Licence
